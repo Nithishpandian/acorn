@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useState } from 'react';
+import "../../../sass/kra-utility.css"
 import { Button, Card, Col, Form, Row } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
 import { LAYOUT } from 'constants.js';
@@ -7,31 +8,167 @@ import BreadcrumbList from 'components/breadcrumb-list/BreadcrumbList';
 import CsLineIcons from 'cs-line-icons/CsLineIcons';
 import useCustomLayout from 'hooks/useCustomLayout';
 import Clamp from 'components/clamp';
+import axios from 'axios';
 
 const MiscellaneousKnowledgeBase = () => {
-  const title = 'Knowledge Base';
-  const description = 'Knowledge Base';
+  // const title = 'Knowledge Base';
+  // const description = 'Knowledge Base';
 
-  const breadcrumbs = [
-    { to: '', text: 'Home' },
-    { to: 'pages', text: 'Pages' },
-    { to: 'pages/miscellaneous', text: 'Miscellaneous' },
-  ];
+  // const breadcrumbs = [
+  //   { to: '', text: 'Home' },
+  //   { to: 'pages', text: 'Pages' },
+  //   { to: 'pages/miscellaneous', text: 'Miscellaneous' },
+  // ];
 
-  useCustomLayout({ layout: LAYOUT.Boxed });
+  // useCustomLayout({ layout: LAYOUT.Boxed });
+
+  const [utilityNumber, setUtilityNumber] = useState()
+  const [kraRecord, setKraRecord] = useState()
+  const [componentMaster, setComponentMaster] = useState()
+  const [componentDetails, setComponentDetails] = useState()
+
+  const onSubmit = (e)=>{
+    e.preventDefault()
+    axios.post("http://localhost:3300/kra-record",{
+      utilityNumber
+    })
+      .then(res=>{
+        setKraRecord(res.data)
+      })
+      .catch(err=>console.log(err))
+    
+    axios.post("http://localhost:3300/component-master",{
+      utilityNumber
+    })
+      .then(res=>{
+        setComponentMaster(res.data)
+      })
+      .catch(err=>console.log(err))
+
+    axios.post("http://localhost:3300/component-details",{
+      utilityNumber
+    })
+      .then(res=>{
+        setComponentDetails(res.data)
+      })
+      .catch(err=>console.log(err))
+
+    console.log("kra:  ", kraRecord);
+    console.log("master:  ", componentMaster)
+    console.log("details:  ", componentDetails)
+  }
+  
 
   return (
-    <>
-      <HtmlHead title={title} description={description} />
-      {/* Title Start */}
+    <div className='kra-full'>
+      <div>
+        <div className='page-cont'>
+          <h1 className='page-heading'>Kra Utility</h1>
+          <div className='page-routing-cont'>
+            <a className='home-page' href="/">Home | </a>
+            <a className='miscellaneous-page' href="/pages/miscellaneous">Miscellaneous</a>
+          </div>
+        </div>
+        <div className="about-cont">
+            Tables that are created without using table markup in favour of flex divs that have breakpoint specific classes. They are available in varieties that contain icons, images and texts with or without a scrollbar.
+        </div>
+        <form className='form-cont' onSubmit={onSubmit}>
+          <div className='input-cont'>
+            <input onChange={(e)=>setUtilityNumber(e.target.value)} value={utilityNumber} type="number" className='input' placeholder='Utility Number' />
+          </div>
+          <div className='btn-cont'>
+            <button type='submit' className='submit-btn'>Submit</button>
+          </div>
+        </form>
+        <div className='table-cont'>
+          <div className="table1">
+            <h3>KRA Record</h3>
+            <table>
+              {
+                kraRecord!==null ?
+                Object.keys(kraRecord).map((list, i)=>{
+                    return(
+                      <tr key={i}>
+                        <th>hello</th>
+                        <td>Components</td>
+                      </tr>
+                    )
+                  }):""
+              }
+        
+            </table>
+          </div>
+
+          <div className="table1">
+            <h3>Component Master</h3>
+            <table>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+            </table>
+          </div>
+
+          <div className="table1">
+            <h3>Component Details</h3>
+            <table>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+              <tr>
+                <th>Home</th>
+                <td>Components</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+      <div className='sidelink-cont'>
+        <a href=""> Home </a>
+        <a href=""> Home </a>
+        <a href=""> Home </a>
+        <a href=""> Home </a>
+        <a href=""> Home </a>
+      </div>
+        
+
+
+
+
+
+
+
+      {/* <HtmlHead title={title} description={description} />
+   
       <div className="page-title-container">
         <h1 className="mb-0 pb-0 display-4">{title}</h1>
         <BreadcrumbList items={breadcrumbs} />
       </div>
-      {/* Title End */}
+     
 
       <Row>
-        {/* Top Search Start */}
+       
         <Col xs="12">
           <Card className="w-100 sh-30 sh-md-25 mb-5">
             <Card.Img src="/img/banner/cta-wide-2.webp" className="card-img h-100" alt="card image" />
@@ -55,10 +192,10 @@ const MiscellaneousKnowledgeBase = () => {
             </div>
           </Card>
         </Col>
-        {/* Top Search End */}
+       
 
         <Col xl="8" xxl="9" className="mb-5">
-          {/* Content Start */}
+          
           <h2 className="small-title">Categories</h2>
           <Row className="row-cols-1 row-cols-lg-2 g-2">
             <Col>
@@ -698,12 +835,12 @@ const MiscellaneousKnowledgeBase = () => {
               </Card>
             </Col>
           </Row>
-          {/* Content End */}
+          
         </Col>
 
-        {/* Sidebar Start */}
+        
         <Col xl="4" xxl="3">
-          {/* Helpful Blog Posts Start */}
+          
           <div className="mb-5">
             <h2 className="small-title">Helpful Blog Posts</h2>
             <Row className="g-2">
@@ -781,9 +918,7 @@ const MiscellaneousKnowledgeBase = () => {
               </Col>
             </Row>
           </div>
-          {/* Helpful Blog Posts End */}
-
-          {/* Popular Topics Start */}
+          
           <h2 className="small-title">Popular Topics</h2>
           <div className="mb-5">
             <Card className="mb-2">
@@ -815,11 +950,11 @@ const MiscellaneousKnowledgeBase = () => {
               </Card.Body>
             </Card>
           </div>
-          {/* Popular Topics End */}
+          
         </Col>
-        {/* Sidebar End */}
-      </Row>
-    </>
+        
+      </Row> */}
+    </div>
   );
 };
 

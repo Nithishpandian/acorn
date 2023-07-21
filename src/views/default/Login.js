@@ -27,7 +27,12 @@ const Login = () => {
         console.log(res.data);
         /* eslint no-underscore-dangle: 0 */
         localStorage.setItem("myToken", res.data.token)
-        history.push("/pages/authentication/role")
+        if(res.data.email==="admin@gmail.com"){
+          history.push("/pages/authentication/role")
+        } else{
+          history.push("/")
+        }
+        
       })
       .catch(err=>console.log(err))
   };

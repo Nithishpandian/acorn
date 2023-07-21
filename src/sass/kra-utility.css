@@ -1,0 +1,102 @@
+/* Chrome, Safari, Edge, Opera */
+input[type=number]::-webkit-outer-spin-button,
+input[type=number]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.kra-full{
+    display: grid;
+    grid-template-columns: 5.5fr 1fr;
+    column-gap: 55px;
+}
+.sidelink-cont{
+    display: flex;
+    flex-direction: column;
+}
+.page-cont{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+}
+.home-page,
+.miscellaneous-page{
+    color: rgb(146, 146, 146);
+}
+.about-cont{
+    margin-top: 15px;
+    padding: 25px 30px;
+    border-radius: 10px;
+    background-color: white;
+    margin-left: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+.form-cont{
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+    column-gap: 12px;
+    margin-top: 40px;
+}
+.input{
+    border: solid 2px rgb(150, 150, 150);
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 4px 12px 4px 17px;
+    width: 350px;
+}
+.input:focus{
+    outline: none;
+}
+.submit-btn{
+    border: solid 1px rgb(0, 163, 228);
+    background-color: rgb(0, 163, 228);
+    color: white;
+    font-weight: bold;
+    padding: 5px 17px;
+    border-radius: 20px;
+    font-size: 16px;
+    transition: background-color 0.4s, color 0.3s;
+}
+.submit-btn:hover{
+    background-color: white;
+    color: rgb(0, 163, 228);
+}
+.table-cont{
+    margin-top: 30px;
+    display: flex;
+    column-gap: 10px;
+}
+.table1{
+    margin-left: 40px;
+    background-color: white;
+    padding: 25px 40px 32px 40px;
+    border-radius: 10px;
+    width: fit-content;
+    box-shadow: 3px 3px 3px rgb(224, 224, 224);
+    transition: scale 0.4s;
+}
+.table1:hover{
+    scale: 1.08;
+}
+.table1 > h3{
+    font-weight: bold;
+    margin-bottom: 13px;
+}
+.table1 > table{
+    margin-left: 10px;
+}
+.table1 > table, th, tr{
+    border: solid 1px gray;
+}
+.table1 >table > tr > th,td{
+ padding: 5px 10px;
+ /* font-weight: bold; */
+ font-size: 18px;
+}

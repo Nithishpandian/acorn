@@ -1,5 +1,5 @@
 /* eslint-disable */
-import { lazy, useEffect } from 'react';
+import { lazy, useEffect, useState } from 'react';
 import { USER_ROLE } from 'constants.js';
 import { DEFAULT_PATHS } from 'config.js';
 import axios from 'axios';
@@ -234,7 +234,7 @@ const routesAndMenuItems = {
           component: pages.miscellaneous.index,
           subs: [
             { path: '/faq', label: 'menu.faq', component: pages.miscellaneous.faq },
-            { path: '/knowledge-base', label: 'menu.knowledge-base', component: pages.miscellaneous.knowledgeBase },
+            { path: '/kra-utility-service', label: 'KRA Utility Service', component: pages.miscellaneous.knowledgeBase },
             { path: '/error', label: 'menu.error', component: pages.miscellaneous.error, noLayout: true },
             { path: '/coming-soon', label: 'menu.coming-soon', component: pages.miscellaneous.comingSoon, noLayout: true },
             { path: '/pricing', label: 'menu.pricing', component: pages.miscellaneous.pricing },
